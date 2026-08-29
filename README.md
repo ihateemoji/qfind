@@ -1,6 +1,6 @@
 # qfind XBPS Package
 
-This repository contains files for packaging qfind for Void Linux using the XBPS package manager.
+This repository contains files for packaging [qfind](https://github.com/DerpcatMusic/qfind) for Void Linux using the XBPS package manager.
 
 ### Installation
 
