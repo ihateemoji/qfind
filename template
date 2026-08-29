@@ -7,26 +7,21 @@ hostmakedepends="pkg-config"
 makedepends="gtk4-devel"
 depends="gtk4 cairo"
 short_desc="Instant filename search"
+maintainer="ihateemoji <ihateemoji.dev@gmail.com>"
 license="MIT"
 homepage="https://github.com/DerpcatMusic/qfind"
 distfiles="https://github.com/DerpcatMusic/qfind/archive/refs/tags/v${version}.tar.gz"
 checksum="29e98f3ea311c3ed3e3eebc5ab3c59aef96def95d487d4293833a1eaf9807076"
 
-do_configure() {
-	export RUSTUP_TOOLCHAIN=stable
-	cargo fetch --locked --target "$(rustc -vV | sed -n 's/host: //p')"
-}
-
 do_build() {
 	export RUSTUP_TOOLCHAIN=stable
-	export CARGO_TARGET_DIR=target
-	cargo build --frozen --release -p qfind -p qfind-tui -p qfind-gtk
+	cargo build --frozen --release -p qfind -p qfind-tui -p qfind-gtk --target "${RUST_TARGET}"
 }
 
 do_install() {
-	vbin ${wrksrc}/target/release/qfind
-	vbin ${wrksrc}/target/release/qfind-tui
-	vbin ${wrksrc}/target/release/qfind-gtk
+	vbin target/${RUST_TARGET}/release/qfind
+	vbin target/${RUST_TARGET}/release/qfind-tui
+	vbin target/${RUST_TARGET}/release/qfind-gtk
 	vinstall ${wrksrc}/packaging/qfind.desktop 644 usr/share/applications
 	vlicense LICENSE
 }
