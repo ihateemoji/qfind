@@ -1,27 +1,23 @@
 # Template file for 'qfind'
 pkgname=qfind
-version=0.1.1
+version=0.1.2
 revision=1
 build_style="cargo"
 hostmakedepends="pkg-config"
-makedepends="gtk4-devel"
-depends="gtk4 cairo"
 short_desc="Instant filename search"
 maintainer="ihateemoji <ihateemoji.dev@gmail.com>"
 license="MIT"
 homepage="https://github.com/DerpcatMusic/qfind"
 distfiles="https://github.com/DerpcatMusic/qfind/archive/refs/tags/v${version}.tar.gz"
-checksum="20d69420b211b11302eccb31ec7f0b2ae85cabf0771b3631a47414434ca2010d"
+checksum="48071c46a114b4593b089ffc42308353b9b355f5ac49195a157b67172807dbc8"
 
 do_build() {
 	export RUSTUP_TOOLCHAIN=stable
-	cargo build --release -p qfind -p qfind-tui -p qfind-gtk --target "${RUST_TARGET}"
+	cargo build --release -p qfind -p qfind-tui --target "${RUST_TARGET}"
 }
 
 do_install() {
 	vbin target/${RUST_TARGET}/release/qfind
 	vbin target/${RUST_TARGET}/release/qfind-tui
-	vbin target/${RUST_TARGET}/release/qfind-gtk
-	vinstall ${wrksrc}/packaging/qfind.desktop 644 usr/share/applications
 	vlicense LICENSE
 }
