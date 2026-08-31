@@ -1,6 +1,6 @@
 # Template file for 'qfind'
 pkgname=qfind
-version=0.2.0
+version=0.3.0
 revision=1
 build_style="cargo"
 hostmakedepends="pkg-config"
@@ -9,7 +9,7 @@ maintainer="ihateemoji <ihateemoji.dev@gmail.com>"
 license="MIT"
 homepage="https://github.com/DerpcatMusic/qfind"
 distfiles="https://github.com/DerpcatMusic/qfind/archive/refs/tags/v${version}.tar.gz"
-checksum="6906c6e6f78d65fc6e98b692257b94584e5a7f889db48e386ce335bda0acb3a6"
+checksum="fb441a7de012fe03cee1fa0e8eded072bf813a90cd8cb98f536f6c294f5a3db5"
 
 do_build() {
 	cargo build --release -p qfind -p qfind-tui --target "${RUST_TARGET}"
